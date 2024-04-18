@@ -5,7 +5,7 @@ from scipy import signal
 # Parameters
 fs = 44100
 freq = 440  # Initial frequency in Hz
-duration = 0.01  # Duration of each frequency segment in seconds
+dt = 0.01  # Duration of each frequency segment in seconds
 
 # PyAudio callback function
 def audio_callback(in_data, frame_count, time_info, status):
@@ -32,9 +32,6 @@ stream = p.open(format=pyaudio.paFloat32,
                 stream_callback=audio_callback)
 
 # Start the stream
-freq = freq_start
-state = "ASCENDING"
-dt = duration
 stream.start_stream()
 
 # Keep the stream active
